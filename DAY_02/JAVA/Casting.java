@@ -1,6 +1,6 @@
-public class Computer {
+ class Computer {
     String brandName;
-    String CPU;
+    int CPU;
     String hardDisk;
     
     public Computer(){
@@ -13,7 +13,7 @@ public class Computer {
         System.out.println("Display in computer");
     }
 }
-public class Laptop extends Computer{
+ class Laptop extends Computer{
       public Laptop(){
          super();
       }
@@ -21,7 +21,16 @@ public class Laptop extends Computer{
           super(brandName);
           this.brandName = "computing machine";
       }
-      public Laptop(String CPU){
-         super(CPU);
+      public Laptop(int CPU){
+         super();
+         this.CPU = CPU;
       }
+}
+
+public class Casting{
+    public static void main(String[] a){
+        new Laptop();
+        new Laptop("dell");
+        new Laptop(102);
+    }
 }
