@@ -1,0 +1,77 @@
+# ninja log v6
+11	687	7797002632641584	calc_autogen/timestamp	4eb86f90ae90f842
+11	687	7797002632641584	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+11	687	7797002632641584	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+11	687	7797002632641584	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+691	2978	7797002633911051	CMakeFiles/calc.dir/calc_autogen/mocs_compilation.cpp.obj	6bc68dcf72b15346
+697	2807	7797002633959873	CMakeFiles/calc.dir/main.cpp.obj	6e8d53811a1b4d1f
+1906	2095	7796998106460943	calc.exe	4e3f192a9317b593
+701	3210	7797002634008708	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+77	227	7797003258180366	calc_autogen/timestamp	4eb86f90ae90f842
+77	227	7797003258180366	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+77	227	7797003258180366	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+77	227	7797003258180366	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+229	1943	7797003259695591	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+45	233	7797003907288902	calc_autogen/timestamp	4eb86f90ae90f842
+45	233	7797003907288902	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+45	233	7797003907288902	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+45	233	7797003907288902	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+243	1971	7797003909267240	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+41	643	7797004398621867	calc_autogen/timestamp	4eb86f90ae90f842
+41	643	7797004398621867	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+41	643	7797004398621867	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+41	643	7797004398621867	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+652	2567	7797004399767937	CMakeFiles/calc.dir/calc_autogen/mocs_compilation.cpp.obj	6bc68dcf72b15346
+656	2709	7797004399807014	CMakeFiles/calc.dir/main.cpp.obj	6e8d53811a1b4d1f
+659	2840	7797004399836310	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+2840	3000	7797004421641094	calc.exe	4e3f192a9317b593
+71	760	7797011662158046	calc_autogen/timestamp	4eb86f90ae90f842
+71	760	7797011662158046	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+71	760	7797011662158046	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+71	760	7797011662158046	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+763	3461	7797011663423960	CMakeFiles/calc.dir/calc_autogen/mocs_compilation.cpp.obj	6bc68dcf72b15346
+770	3462	7797011663488017	CMakeFiles/calc.dir/main.cpp.obj	6e8d53811a1b4d1f
+775	3639	7797011663536858	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+3639	3906	7797011692177848	calc.exe	4e3f192a9317b593
+12	672	7797016797024559	calc_autogen/timestamp	4eb86f90ae90f842
+12	672	7797016797024559	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+12	672	7797016797024559	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+12	672	7797016797024559	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+681	3115	7797016798236928	CMakeFiles/calc.dir/main.cpp.obj	6e8d53811a1b4d1f
+675	3116	7797016798178332	CMakeFiles/calc.dir/calc_autogen/mocs_compilation.cpp.obj	6bc68dcf72b15346
+685	3354	7797016798276366	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+3354	3677	7797016824967903	calc.exe	4e3f192a9317b593
+18	222	7797017268543441	calc_autogen/timestamp	4eb86f90ae90f842
+18	222	7797017268543441	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+18	222	7797017268543441	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+18	222	7797017268543441	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+233	2102	7797017270696040	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+2102	2361	7797017289387038	calc.exe	4e3f192a9317b593
+128	1910	7797040550224445	calc_autogen/timestamp	4eb86f90ae90f842
+128	1910	7797040550224445	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+128	1910	7797040550224445	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+128	1910	7797040550224445	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+1929	7871	7797040552639910	CMakeFiles/calc.dir/calc_autogen/mocs_compilation.cpp.obj	6bc68dcf72b15346
+1941	8529	7797040552762775	CMakeFiles/calc.dir/main.cpp.obj	6e8d53811a1b4d1f
+1953	8631	7797040552890439	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+8632	9057	7797040619665874	calc.exe	4e3f192a9317b593
+213	2482	7797096277103083	calc_autogen/timestamp	4eb86f90ae90f842
+213	2482	7797096277103083	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+213	2482	7797096277103083	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+213	2482	7797096277103083	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+2487	8520	7797096278909613	CMakeFiles/calc.dir/calc_autogen/mocs_compilation.cpp.obj	6bc68dcf72b15346
+2499	8535	7797096279046360	CMakeFiles/calc.dir/main.cpp.obj	6e8d53811a1b4d1f
+2511	8802	7797096279163524	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+8802	9581	7797096342074351	calc.exe	4e3f192a9317b593
+165	405	7797245375436789	calc_autogen/timestamp	4eb86f90ae90f842
+165	405	7797245375436789	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+165	405	7797245375436789	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+165	405	7797245375436789	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+408	3197	7797245377868261	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+3197	3491	7797245405760056	calc.exe	4e3f192a9317b593
+17	280	7802210553725982	calc_autogen/timestamp	4eb86f90ae90f842
+17	280	7802210553725982	calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+17	280	7802210553725982	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/timestamp	4eb86f90ae90f842
+17	280	7802210553725982	C:/Users/HP/OneDrive - rwatvetboard/Documents/calc/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/calc_autogen/mocs_compilation.cpp	4eb86f90ae90f842
+283	2849	7802210556390281	CMakeFiles/calc.dir/mainwindow.cpp.obj	4b6530429923ca6e
+2849	3576	7802210582057212	calc.exe	4e3f192a9317b593
