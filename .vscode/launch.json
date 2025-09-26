@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "LibraryDemo",
+      "request": "launch",
+      "mainClass": "DAY_09.LIBRARY.LibraryDemo",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "Library",
+      "request": "launch",
+      "mainClass": "DAY_09.LIBRARY.Library",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "Bank",
+      "request": "launch",
+      "mainClass": "DAY_09.Bank",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
       "name": "Abstraction",
       "request": "launch",
       "mainClass": "Abstraction",
