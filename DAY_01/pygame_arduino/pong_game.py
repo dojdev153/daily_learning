@@ -1,16 +1,17 @@
 import pygame
 import random
 import sys
+import serial
 
-# -------------------
-# Pygame Setup
-# -------------------
 pygame.init()
-width, height = 800, 600
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Arcade Pong: Chaos Mode")
+w, h = 800, 600
+screen = pygame.display.set_mode((w, h))
+pygame.display.set_caption("Arcade Pong: Chaos Mode (Arduino Joystick)")
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("Arial", 30)
+
+# Arduino Setup
+arduino = serial.Serial('COM3', 9600, timeout=0.1)
 
 # Colors
 white = (255, 255, 255)
@@ -19,54 +20,52 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 yellow = (255, 255, 0)
+trail_color = (255, 100, 100)
 
-# Paddle
-paddle_width, paddle_height = 20, 100
+# Game Settings
+paddle_w, paddle_h = 20, 100
 player_speed = 7
 ai_speed = 4
-
-# Ball
 ball_size = 20
 ball_count = 3
-
-# Score
 player_score = 0
 comp_score = 0
 win_score = 5
 
-# Power-ups
 powerups = []
 POWERUP_SIZE = 20
 POWERUP_TYPES = ["grow", "shrink_ball", "fast_paddle"]
 powerup_timer = 0
 
-# -------------------
-# Helper functions
-# -------------------
+# Audio
+pygame.mixer.init()
+hit_sound = pygame.mixer.Sound("hit.wav")
+score_sound = pygame.mixer.Sound("score.wav")
+powerup_sound = pygame.mixer.Sound("powerup.wav")
+
+# Helper Functions
 def reset_ball(ball):
-    ball["x"] = width // 2
-    ball["y"] = height // 2
+    ball["x"] = w // 2
+    ball["y"] = h // 2
     ball["speedx"] *= random.choice([-1, 1])
     ball["speedy"] = random.choice([-3, -2, 2, 3])
+    ball["trail"] = []
 
 def spawn_powerup():
     return {
-        "x": random.randint(100, width-100),
-        "y": random.randint(50, height-50),
+        "x": random.randint(100, w-100),
+        "y": random.randint(50, h-50),
         "type": random.choice(POWERUP_TYPES),
         "active": True
     }
 
-# -------------------
-# Start Screen
-# -------------------
 def start_screen():
     while True:
         screen.fill(black)
         title_text = font.render("Arcade Pong: Chaos Mode", True, white)
         instruction_text = font.render("Press SPACE to Start", True, white)
-        screen.blit(title_text, (width//2 - title_text.get_width()//2, height//2 - 80))
-        screen.blit(instruction_text, (width//2 - instruction_text.get_width()//2, height//2))
+        screen.blit(title_text, (w//2 - title_text.get_width()//2, h//2 - 80))
+        screen.blit(instruction_text, (w//2 - instruction_text.get_width()//2, h//2))
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -76,16 +75,13 @@ def start_screen():
                 if event.key == pygame.K_SPACE:
                     return
 
-# -------------------
-# Game Over Screen
-# -------------------
 def game_over(winner):
     while True:
         screen.fill(black)
         over_text = font.render(f"{winner} Wins!", True, white)
         restart_text = font.render("Press R to Restart or Q to Quit", True, white)
-        screen.blit(over_text, (width//2 - over_text.get_width()//2, height//2 - 50))
-        screen.blit(restart_text, (width//2 - restart_text.get_width()//2, height//2 + 20))
+        screen.blit(over_text, (w//2 - over_text.get_width()//2, h//2 - 50))
+        screen.blit(restart_text, (w//2 - restart_text.get_width()//2, h//2 + 20))
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -98,20 +94,13 @@ def game_over(winner):
                     pygame.quit()
                     sys.exit()
 
-# -------------------
 # Main Game Loop
-# -------------------
 def main_game():
-    global player_speed
-    global player_score, comp_score, powerups, powerup_timer, paddle_height
+    global player_speed, player_score, comp_score, powerups, powerup_timer, paddle_h
 
-    # Player and AI paddles
-    player_y = height // 2 - paddle_height // 2
-    comp_y = height // 2 - paddle_height // 2
-
-    # Balls
-    balls = [{"x": width//2, "y": height//2, "speedx": 3, "speedy": 3} for _ in range(ball_count)]
-
+    player_y = h // 2 - paddle_h // 2
+    comp_y = h // 2 - paddle_h // 2
+    balls = [{"x": w//2, "y": h//2, "speedx": 3, "speedy": 3, "trail": []} for _ in range(ball_count)]
     running = True
     powerups = []
 
@@ -121,91 +110,101 @@ def main_game():
                 pygame.quit()
                 sys.exit()
 
-        # Keyboard input
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP]:
-            player_y -= player_speed
-        if keys[pygame.K_DOWN]:
-            player_y += player_speed
-        player_y = max(0, min(height - paddle_height, player_y))
+        # Arduino Joystick Input
+        try:
+            line = arduino.readline().decode().strip()
+            if line != "":
+                val, switch = map(int, line.split(","))
+                player_y = int((val / 1023) * (h - paddle_h))
 
-        # AI paddle
-        target_ball = min(balls, key=lambda b: abs(b["x"] - (width - paddle_width)))
-        if comp_y + paddle_height // 2 < target_ball["y"]:
+                if switch == 1:
+                    for pu in powerups:
+                        if pu["active"]:
+                            if pu["type"] == "grow":
+                                paddle_h = min(paddle_h + 50, 200)
+                            elif pu["type"] == "shrink_ball":
+                                for ball in balls:
+                                    ball["speedx"] *= 0.8
+                                    ball["speedy"] *= 0.8
+                            elif pu["type"] == "fast_paddle":
+                                player_speed += 3
+                            pu["active"] = False
+                            pygame.mixer.Sound.play(powerup_sound)
+                            break
+        except:
+            pass
+
+        # AI Paddle
+        target_ball = min(balls, key=lambda b: abs(b["x"] - (w - paddle_w)))
+        if comp_y + paddle_h // 2 < target_ball["y"] - 10:
             comp_y += ai_speed
-        elif comp_y + paddle_height // 2 > target_ball["y"]:
+        elif comp_y + paddle_h // 2 > target_ball["y"] + 10:
             comp_y -= ai_speed
-        comp_y = max(0, min(height - paddle_height, comp_y))
+        comp_y = max(0, min(h - paddle_h, comp_y))
 
-        # Move balls
+        # Move Balls
         for ball in balls:
+            ball["trail"].append((ball["x"], ball["y"]))
+            if len(ball["trail"]) > 8:
+                ball["trail"].pop(0)
+
             ball["x"] += ball["speedx"]
             ball["y"] += ball["speedy"]
 
-            # Collisions with top/bottom
-            if ball["y"] <= 0 or ball["y"] >= height - ball_size:
+            if ball["y"] <= 0 or ball["y"] >= h - ball_size:
                 ball["speedy"] *= -1
 
-            # Collisions with paddles
-            if (ball["x"] <= paddle_width and player_y < ball["y"] < player_y + paddle_height) or \
-               (ball["x"] >= width - paddle_width - ball_size and comp_y < ball["y"] < comp_y + paddle_height):
+            if (ball["x"] <= paddle_w and player_y < ball["y"] < player_y + paddle_h) or \
+               (ball["x"] >= w - paddle_w - ball_size and comp_y < ball["y"] < comp_y + paddle_h):
                 ball["speedx"] *= -1
+                pygame.mixer.Sound.play(hit_sound)
+                if random.random() < 0.2:
+                    ball["speedy"] += random.choice([-1, 1])
 
-            # Out of bounds (score)
             if ball["x"] < 0:
                 comp_score += 1
+                pygame.mixer.Sound.play(score_sound)
                 reset_ball(ball)
-            elif ball["x"] > width:
+            elif ball["x"] > w:
                 player_score += 1
+                pygame.mixer.Sound.play(score_sound)
                 reset_ball(ball)
 
-        # Spawn power-ups occasionally
+        # Power-ups
         powerup_timer += 1
-        if powerup_timer > 600:  # ~10 seconds at 60 FPS
+        if powerup_timer > 600:
             powerups.append(spawn_powerup())
             powerup_timer = 0
 
-        # Check power-up collisions
-        for pu in powerups:
-            if pu["active"] and player_y < pu["y"] < player_y + paddle_height and paddle_width > 0:
-                if pu["type"] == "grow":
-                    paddle_height = min(paddle_height + 50, 200)
-                elif pu["type"] == "shrink_ball":
-                    for ball in balls:
-                        ball["speedx"] *= 0.8
-                        ball["speedy"] *= 0.8
-                elif pu["type"] == "fast_paddle":
-                    
-                    player_speed += 3
-                pu["active"] = False
-
-        # Draw everything
-        screen.fill(black)
-        pygame.draw.rect(screen, white, (0, player_y, paddle_width, paddle_height))
-        pygame.draw.rect(screen, white, (width - paddle_width, comp_y, paddle_width, paddle_height))
-
-        for ball in balls:
-            pygame.draw.circle(screen, red, (int(ball["x"]), int(ball["y"])), ball_size // 2)
-
-        # Draw power-ups
         for pu in powerups:
             if pu["active"]:
                 color = green if pu["type"] == "grow" else yellow if pu["type"] == "fast_paddle" else blue
                 pygame.draw.rect(screen, color, (pu["x"], pu["y"], POWERUP_SIZE, POWERUP_SIZE))
 
-        # Draw middle line
-        pygame.draw.aaline(screen, white, (width//2, 0), (width//2, height))
+        # Draw Everything
+        screen.fill(black)
+        pygame.draw.rect(screen, white, (0, player_y, paddle_w, paddle_h))
+        pygame.draw.rect(screen, white, (w - paddle_w, comp_y, paddle_w, paddle_h))
 
-        # Draw scores
+        for ball in balls:
+            for i, pos in enumerate(ball["trail"]):
+                alpha = 255 - i * 30
+                trail_surf = pygame.Surface((ball_size, ball_size), pygame.SRCALPHA)
+                pygame.draw.circle(trail_surf, (*trail_color[:3], alpha), (ball_size//2, ball_size//2), ball_size // 2)
+                screen.blit(trail_surf, pos)
+            pygame.draw.circle(screen, red, (int(ball["x"]), int(ball["y"])), ball_size // 2)
+
+        pygame.draw.aaline(screen, white, (w//2, 0), (w//2, h))
+
         player_text = font.render(str(player_score), True, white)
         comp_text = font.render(str(comp_score), True, white)
-        screen.blit(player_text, (width//4 - player_text.get_width()//2, 20))
-        screen.blit(comp_text, (3*width//4 - comp_text.get_width()//2, 20))
+        screen.blit(player_text, (w//4 - player_text.get_width()//2, 20))
+        screen.blit(comp_text, (3*w//4 - comp_text.get_width()//2, 20))
 
         pygame.display.flip()
         clock.tick(60)
 
-        # Check win condition
+        # Check Win Condition
         if player_score >= win_score:
             if game_over("Player"):
                 player_score = 0
@@ -217,9 +216,7 @@ def main_game():
                 comp_score = 0
                 return
 
-# -------------------
-# Run the game
-# -------------------
+# Run the Game
 start_screen()
 while True:
     main_game()
