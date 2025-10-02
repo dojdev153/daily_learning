@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "AirlineDemo",
+      "request": "launch",
+      "mainClass": "DAY_13.AirlineDemo",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
       "name": "LibraryDemo",
       "request": "launch",
       "mainClass": "DAY_09.LIBRARY.LibraryDemo",

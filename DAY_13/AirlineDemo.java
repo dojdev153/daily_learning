@@ -32,6 +32,7 @@ class Person {
 }
 
 class Passenger extends Person {
+
     public Passenger(String name, String id) {
         super(name, id);
     }
@@ -39,7 +40,7 @@ class Passenger extends Person {
     public void bookFlight(Flight f) {
         if (f.isAvailable()) {
             f.setAvailable(false);
-            System.out.println(getName() + " booked flight " + f.getFlightNumber() + " to " + f.getDestination());
+            System.out.println(getName() + " booked flight " + f.getFlightNumber() + " whose destination is " + f.getDestination());
         } else {
             System.out.println("Sorry, flight " + f.getFlightNumber() + " is already booked.");
         }
@@ -92,9 +93,10 @@ class StaffUser extends User {
         System.out.println(name + " accesses system to manage flights.");
     }
 }
+
 public class AirlineDemo {
     public static void main(String[] args) {
-        Flight f1 = new Flight("AF101", "Paris");
+        Flight f1 = new Flight("AF101", "Qatar");
         Flight f2 = new Flight("EK202", "Dubai");
 
         Passenger passenger1 = new Passenger("Alice", "P001");
