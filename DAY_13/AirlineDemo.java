@@ -1,17 +1,17 @@
-package DAY_13;
 import java.util.Scanner;
-
 class Flight {
     private String flightNumber;
     private String destination;
+    private String origin;
     private boolean isAvailable = true;
 
     public Flight(String flightNumber, String destination) {
         this.flightNumber = flightNumber;
         this.destination = destination;
+        this.origin = origin;
     }
     public void showDetails(){
-        System.out.println("flight" + flightNumber + " | " + "origin" + "->" + destination + " | Availabe" + available);
+        System.out.println("Flight: " + flightNumber + " | " + origin + "->" + destination + "| available: " + isAvailable());
     }
 
     public String getFlightNumber() { return flightNumber; }
@@ -37,7 +37,6 @@ class Person {
 }
 
 class Passenger extends Person {
-
     public Passenger(String name, String id) {
         super(name, id);
     }
@@ -45,7 +44,7 @@ class Passenger extends Person {
     public void bookFlight(Flight f) {
         if (f.isAvailable()) {
             f.setAvailable(false);
-            System.out.println(getName() + " booked flight " + f.getFlightNumber() + " whose destination is " + f.getDestination());
+            System.out.println(getName() + " booked flight " + f.getFlightNumber() + " to " + f.getDestination());
         } else {
             System.out.println("Sorry, flight " + f.getFlightNumber() + " is already booked.");
         }
@@ -60,7 +59,7 @@ class Staff extends Person {
     public void manageFlight(Flight f, boolean open) {
         f.setAvailable(open);
         if (open) {
-            System.out.println(getName() + " opened flight " + f.getFlightNumber());
+            System.out.println(getName() + " reopened flight " + f.getFlightNumber());
         } else {
             System.out.println(getName() + " closed flight " + f.getFlightNumber());
         }
@@ -102,34 +101,35 @@ class StaffUser extends User {
 public class AirlineDemo {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Flight f1 = new Flight("AF101", "Qatar");
+        Flight f1 = new Flight("AF101", "Paris");
 
-        System.out.println("Welcome to Airline Systme!");
-        System.out.println("Are you a staff or passenger: ");
-        String role = sc.nextline();
-
+        System.out.println("Welcome to Airline System!");
+        System.out.println("Are you a staff or passenger?");
+        String role = sc.nextLine();
 
         if(role.equalsIgnoreCase("staff")){
             System.out.println("Enter your name: ");
             String name = sc.nextLine();
-            Staff staff = new Staff(name,"St01");
+            Staff staff = new Staff(name, "ST01");
 
-            
+            f1.showDetails();
+            System.out.println("do you want to open this flight? (yes/no)");
+            String choice = sc.nextLine();
+            staff.manageFlight(f1, choice.equalsIgnoreCase("yes"));
+        }else if(role.equalsIgnoreCase("passenger")){
+                System.out.println("Enter your name: ");
+                String name = sc.nextLine();
+                Passenger passenger = new Passenger(name, "P001");
+
+                f1.showDetails();
+                System.out.println("Do you want to book this flight? (yes/no): ");
+                String choice = sc.nextLine();
+                if(choice.equalsIgnoreCase("yes")){
+                    passenger.bookFlight(f1);
+                }
+        }else{
+            System.out.println("invalid role. Exiting...");
         }
-
-        User u1 = new PassengerUser("Alice");
-        User u2 = new StaffUser("Bob");
-
-        u1.accessSystem();
-        u2.accessSystem();
-
-        passenger1.bookFlight(f1);
-        passenger1.bookFlight(f1);
-
-        staff1.manageFlight(f1, true);
-        passenger1.bookFlight(f1);
-
-        System.out.println("Flight " + f1.getFlightNumber() + " availability: " + f1.isAvailable());
-        System.out.println("Flight " + f2.getFlightNumber() + " availability: " + f2.isAvailable());
+        sc.close();
     }
 }
