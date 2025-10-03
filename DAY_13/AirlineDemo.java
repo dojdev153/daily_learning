@@ -1,17 +1,19 @@
-import java.util.Scanner;
+import java.util.*;
+
 class Flight {
     private String flightNumber;
     private String destination;
     private String origin;
     private boolean isAvailable = true;
 
-    public Flight(String flightNumber, String destination) {
+    public Flight(String flightNumber, String origin, String destination) {
         this.flightNumber = flightNumber;
-        this.destination = destination;
         this.origin = origin;
+        this.destination = destination;
     }
-    public void showDetails(){
-        System.out.println("Flight: " + flightNumber + " | " + origin + "->" + destination + "| available: " + isAvailable());
+
+    public void showDetails() {
+        System.out.println("Flight: " + flightNumber + " | " + origin + " -> " + destination + " | Available: " + isAvailable);
     }
 
     public String getFlightNumber() { return flightNumber; }
@@ -56,6 +58,11 @@ class Staff extends Person {
         super(name, id);
     }
 
+    public Flight addFlight(String flightNumber, String origin, String destination) {
+        System.out.println(getName() + " added flight " + flightNumber);
+        return new Flight(flightNumber, origin, destination);
+    }
+
     public void manageFlight(Flight f, boolean open) {
         f.setAvailable(open);
         if (open) {
@@ -66,69 +73,117 @@ class Staff extends Person {
     }
 }
 
-abstract class User {
-    protected String name;
+class AirlineSystem {
+    private List<Flight> flights = new ArrayList<>();
 
-    public User(String name) {
-        this.name = name;
+    public void addFlight(Flight f) {
+        flights.add(f);
     }
 
-    abstract void accessSystem();
-}
-
-class PassengerUser extends User {
-    public PassengerUser(String name) {
-        super(name);
+    public void listFlights() {
+        if (flights.isEmpty()) {
+            System.out.println("No flights available.");
+        } else {
+            for (Flight f : flights) {
+                f.showDetails();
+            }
+        }
     }
 
-    @Override
-    void accessSystem() {
-        System.out.println(name + " accesses system to book flights.");
-    }
-}
-
-class StaffUser extends User {
-    public StaffUser(String name) {
-        super(name);
-    }
-
-    @Override
-    void accessSystem() {
-        System.out.println(name + " accesses system to manage flights.");
+    public Flight findFlight(String flightNumber) {
+        for (Flight f : flights) {
+            if (f.getFlightNumber().equalsIgnoreCase(flightNumber)) {
+                return f;
+            }
+        }
+        return null;
     }
 }
 
 public class AirlineDemo {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Flight f1 = new Flight("AF101", "Paris");
+        AirlineSystem system = new AirlineSystem();
+
+        // Preload some flights
+        system.addFlight(new Flight("AF101", "Mumbai", "Paris"));
+        system.addFlight(new Flight("BA202", "Kigali", "London"));
 
         System.out.println("Welcome to Airline System!");
         System.out.println("Are you a staff or passenger?");
         String role = sc.nextLine();
 
-        if(role.equalsIgnoreCase("staff")){
+        if (role.equalsIgnoreCase("staff")) {
             System.out.println("Enter your name: ");
             String name = sc.nextLine();
             Staff staff = new Staff(name, "ST01");
 
-            f1.showDetails();
-            System.out.println("do you want to open this flight? (yes/no)");
-            String choice = sc.nextLine();
-            staff.manageFlight(f1, choice.equalsIgnoreCase("yes"));
-        }else if(role.equalsIgnoreCase("passenger")){
-                System.out.println("Enter your name: ");
-                String name = sc.nextLine();
-                Passenger passenger = new Passenger(name, "P001");
+            while (true) {
+                System.out.println("\nStaff Menu: ");
+                System.out.println("1. List Flights");
+                System.out.println("2. Add Flight");
+                System.out.println("3. Open/Close Flight");
+                System.out.println("4. Exit");
+                int choice = sc.nextInt();
+                sc.nextLine(); // consume newline
 
-                f1.showDetails();
-                System.out.println("Do you want to book this flight? (yes/no): ");
-                String choice = sc.nextLine();
-                if(choice.equalsIgnoreCase("yes")){
-                    passenger.bookFlight(f1);
+                if (choice == 1) {
+                    system.listFlights();
+                } else if (choice == 2) {
+                    System.out.println("Enter flight number: ");
+                    String fn = sc.nextLine();
+                    System.out.println("Enter origin: ");
+                    String og = sc.nextLine();
+                    System.out.println("Enter destination: ");
+                    String dn = sc.nextLine();
+                    system.addFlight(staff.addFlight(fn, og, dn));
+                } else if (choice == 3) {
+                    system.listFlights();
+                    System.out.println("Enter flight number to manage: ");
+                    String fn = sc.nextLine();
+                    Flight f = system.findFlight(fn);
+                    if (f != null) {
+                        System.out.println("Open this flight? (yes/no)");
+                        String ans = sc.nextLine();
+                        staff.manageFlight(f, ans.equalsIgnoreCase("yes"));
+                    } else {
+                        System.out.println("Flight not found.");
+                    }
+                } else if (choice == 4) {
+                    break;
                 }
-        }else{
-            System.out.println("invalid role. Exiting...");
+            }
+        } else if (role.equalsIgnoreCase("passenger")) {
+            System.out.println("Enter your name: ");
+            String name = sc.nextLine();
+            Passenger passenger = new Passenger(name, "P001");
+
+            while (true) {
+                System.out.println("\nPassenger Menu: ");
+                System.out.println("1. List Flights");
+                System.out.println("2. Book Flight");
+                System.out.println("3. Exit");
+                int choice = sc.nextInt();
+                sc.nextLine();
+
+                if (choice == 1) {
+                    system.listFlights();
+                } else if (choice == 2) {
+                    system.listFlights();
+                    System.out.println("Enter flight number to book: ");
+                    String fn = sc.nextLine();
+                    Flight f = system.findFlight(fn);
+                    if (f != null) {
+                        passenger.bookFlight(f);
+                    } else {
+                        System.out.println("Flight not found!");
+                    }
+                } else if (choice == 3) {
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Invalid role. Exiting...");
         }
         sc.close();
     }
