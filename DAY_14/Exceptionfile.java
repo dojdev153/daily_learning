@@ -1,29 +1,29 @@
-package DAY_14;
+
 
 import java.util.Scanner;
 
 public class Exceptionfile {
     public static void main(String[] args) {
- Scanner sc = new Scanner(System.in);
-        int a, b;
+          Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter the first number: ");
-        a = sc.nextInt();
-        System.out.println("Enter the second number: ");
-        b = sc.nextInt();
+        System.out.println("Enter your age: ");
+        int b = sc.nextInt();
 
         try {
-            if(b == 0)
-               throw new ArithmeticException("Cannot divide by zero");
-            int c = a / b;
-            System.out.println("The result is: " + c);
-        } catch (ArithmeticException e) {
+            if(b<18)
+                throw new AgeException("you're under 18");
+            System.out.println("watch movie");
+        } catch (AgeException e) {
             System.out.println("Error: " + e);
-        } catch (Exception e) {
-            System.out.println("General error: " + e);
         }
 
         sc.close();
     }
     
+}
+
+class AgeException extends Exception {
+    public AgeException(String message){
+        super(message);
+    }
 }
