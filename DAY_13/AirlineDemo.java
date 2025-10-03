@@ -1,4 +1,6 @@
 package DAY_13;
+import java.util.Scanner;
+
 class Flight {
     private String flightNumber;
     private String destination;
@@ -7,6 +9,9 @@ class Flight {
     public Flight(String flightNumber, String destination) {
         this.flightNumber = flightNumber;
         this.destination = destination;
+    }
+    public void showDetails(){
+        System.out.println("flight" + flightNumber + " | " + "origin" + "->" + destination + " | Availabe" + available);
     }
 
     public String getFlightNumber() { return flightNumber; }
@@ -55,7 +60,7 @@ class Staff extends Person {
     public void manageFlight(Flight f, boolean open) {
         f.setAvailable(open);
         if (open) {
-            System.out.println(getName() + " reopened flight " + f.getFlightNumber());
+            System.out.println(getName() + " opened flight " + f.getFlightNumber());
         } else {
             System.out.println(getName() + " closed flight " + f.getFlightNumber());
         }
@@ -96,11 +101,21 @@ class StaffUser extends User {
 
 public class AirlineDemo {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         Flight f1 = new Flight("AF101", "Qatar");
-        Flight f2 = new Flight("EK202", "Dubai");
 
-        Passenger passenger1 = new Passenger("Alice", "P001");
-        Staff staff1 = new Staff("Bob", "S001");
+        System.out.println("Welcome to Airline Systme!");
+        System.out.println("Are you a staff or passenger: ");
+        String role = sc.nextline();
+
+
+        if(role.equalsIgnoreCase("staff")){
+            System.out.println("Enter your name: ");
+            String name = sc.nextLine();
+            Staff staff = new Staff(name,"St01");
+
+            
+        }
 
         User u1 = new PassengerUser("Alice");
         User u2 = new StaffUser("Bob");
