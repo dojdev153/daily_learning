@@ -5,6 +5,41 @@
       "type": "java",
       "name": "AirlineDemo",
       "request": "launch",
+      "mainClass": "AirlineDemo",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "Exceptionfile",
+      "request": "launch",
+      "mainClass": "DAY_14.Exceptionfile",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "ExceptionMain",
+      "request": "launch",
+      "mainClass": "DAY_14.JAVA_exceptions.ExceptionMain",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "ExceptionMain",
+      "request": "launch",
+      "mainClass": "ExceptionMain",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "Exception",
+      "request": "launch",
+      "mainClass": "Exception",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
+      "name": "AirlineDemo",
+      "request": "launch",
       "mainClass": "DAY_13.AirlineDemo",
       "projectName": "daily_learning_9916285a"
     },
