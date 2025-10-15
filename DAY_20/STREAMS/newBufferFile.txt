@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game_website_1</title>
+    <link rel="stylesheet" href="game.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="head-left">
+                <img src="/gaming_webiste/zentry-copy-one/img/logo.png" alt="logo">
+                <button>products</button>
+            </div>
+            <div class="head-right">
+                <p><a href="#">NEXUS</a></p>
+                <p><a href="#">VAULT</a></p>
+                <p><a href="#">ABOUT</a></p>
+                <p><a href="#">SERVICES</a></p>
+                <p><a href="#">ABOUT</a></p>
+            </div>
+        </header>
+
+        <section class="hero-section autoBlur">
+           <div class="hero-video">
+               <video loop muted autoplay preload="auto" class="hero-vid">
+                <source src="./videos/hero-1.mp4">
+               </video>
+               <div class="hero-info">
+                <h1>REDEFINE</h1>
+                <p>Enter the metagame layer Unleash the play Economy</p>
+                <button>watch trailer</button>
+               </div>
+               <h1 class="gaming-text">gaming</h1>
+           </div>
+           <div class="next-button">
+            NEXT
+           </div>
+        </section>
+        <section class="about">
+            <p>welcome to zentry world</p>
+            <div class="autoBlur">
+                <h1>DISCOVER THE WOLRD LARGEST SHARD ADVENTURE</h1>
+            </div>
+            
+            <div class="img-box autotake">
+                <img src="./img/about.webp" alt="about">
+            </div>
+            <h4>game of games begins your life,now an epic MMORPG</h4>
+            <h5>zentry unites players across various platforms, digital and physical into a world of adventure and mystery</h5>
+        </section>
+
+        <section class="info-section">
+            <h3>Into the Metagame Layer</h3>
+            <p>A cross-platform metagame app, turning your activities across Web2 and Web3 games into a rewarding experience.</p>
+            <div class="info-cards">
+              <div class="card autodisplay">
+                <h1>RADIANT</h1>
+                <p>An anime and gaming-inspired NFT collection - the IP primed for expansion.</p>
+                <video src="videos/feature-1.mp4" autoplay loop muted playsinline></video>
+                <button>COMING SOON</button>
+              </div>
+
+              <div class="card autodisplay">
+                <h1>RADIANT</h1>
+                <p>An anime and gaming-inspired NFT collection - the IP primed for expansion.</p>
+                <video src="videos/feature-2.mp4" autoplay loop muted playsinline></video>
+                <button>COMING SOON</button>
+              </div>
+
+              <div class="card autodisplay">
+                <h1>RADIANT</h1>
+                <p>An anime and gaming-inspired NFT collection - the IP primed for expansion.</p>
+                <video src="videos/feature-3.mp4" autoplay loop muted playsinline></video>
+                <button>COMING SOON</button>
+              </div>
+
+              <div class="card autodisplay">
+                <h1>RADIANT</h1>
+                <p>An anime and gaming-inspired NFT collection - the IP primed for expansion.</p>
+                <video src="videos/feature-4.mp4" autoplay loop muted playsinline></video>
+                <button>COMING SOON</button>
+              </div>
+
+              <div class="card autodisplay">
+                <video src="videos/feature-5.mp4" autoplay loop muted playsinline></video>
+              </div>
+
+              <div class="card autodisplay">
+               <h1>MORE COMING SOON</h1>
+              </div>
+            </div>
+              
+          </section>
+          <section class="contact">
+            <p>join zentry</p>
+            <div class="autoBlur">
+                <h1>LET'S BUILD THE NEW GAMING ERA TOGETHER</h1>
+            </div>
+            <button>CONTACT US</button>
+            <img class="img1" src="img/swordman.webp" alt="contact1">
+            <img class="img2" src="img/contact-1.webp" alt="contact2">
+            <img class="img3" src="img/contact-2.webp" alt="contact">
+          </section>
+          <section class="footer">
+            <p>@NOVA 2025 .All rights Reserved</p>
+            <ul>
+                <li><a href=""><i class='bx bxl-youtube'></i></a></li>
+                <li><a href=""><i class='bx bxl-twitter' ></i></a></li>
+                <li><a href=""><i class='bx bxl-github' ></i></a></li>
+                <li><a href=""><i class='bx bxl-twitter' ></i></a></li>
+            </ul>
+            <p>Privacy Policy</p>
+          </section>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
