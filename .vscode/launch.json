@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Person$BankingApp",
+      "request": "launch",
+      "mainClass": "DAY_18.Person$BankingApp",
+      "projectName": "daily_learning_9916285a"
+    },
+    {
+      "type": "java",
       "name": "AirlineDemo",
       "request": "launch",
       "mainClass": "AirlineDemo",
