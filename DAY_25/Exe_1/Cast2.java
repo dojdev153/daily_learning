@@ -14,7 +14,9 @@ public class Cast2 {
     public static void main(String []a){
         Animal a1 = new Lion();
         a1.makeSound();
-        Lion l1 = (Lion)a1;
-        l1.Roar();
+        if(a1 instanceof Lion){
+            Lion l1 = (Lion)a1;
+            l1.Roar();
+        }
     }
 }
