@@ -5,8 +5,7 @@ public class MapsDemo {
         Map<String, Integer> marks = new HashMap<>();
         String name = "alice";
         String Alice = name.toLowerCase();
-
-        
+                
         marks.put("Bob", 85);
         marks.put("alice", 78);
         marks.put("Rahil", 90);
