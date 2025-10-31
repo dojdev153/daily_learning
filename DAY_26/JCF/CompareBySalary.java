@@ -1,4 +1,4 @@
-package DAY_26.WildCards;
+package DAY_26.JCF;
 import java.util.*;
 public class CompareBySalary implements Comparator<Employee> {
     @Override

@@ -1,4 +1,4 @@
-package DAY_26.types;
+package DAY_26.JCF;
 class Box<T>{
     private T value;
 

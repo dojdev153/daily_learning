@@ -1,4 +1,4 @@
-package DAY_26.WildCards;
+package DAY_26.JCF;
 
 public class Employee {
     private String name;

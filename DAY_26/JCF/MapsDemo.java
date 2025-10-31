@@ -1,11 +1,11 @@
-package DAY_26.types;
+package DAY_26.JCF;
 import java.util.*;
 public class MapsDemo {
     public static void main(String[] args) {
         Map<String, Integer> marks = new HashMap<>();
         String name = "alice";
         String Alice = name.toLowerCase();
-                
+
         marks.put("Bob", 85);
         marks.put("alice", 78);
         marks.put("Rahil", 90);

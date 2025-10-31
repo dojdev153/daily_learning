@@ -1,4 +1,4 @@
-package DAY_26.types;
+package DAY_26.JCF;
 import java.util.*;
 
 class Student{
