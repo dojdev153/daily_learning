@@ -34,5 +34,18 @@ public class Intro2 {
         //access individual objects
         Student fStudent = students.get(0);
         System.out.println("first Student: " + fStudent.name + " Marks: " + fStudent.marks);
+
+        //remove an object
+        students.remove(0);
+        System.out.println("when i removed the first student: ");
+        for(Student s: students){
+            s.dispaly();
+        }
+
+        //add an object
+        students.add(new Student("David", 100));
+        for(Student s: students){
+            s.dispaly();
+        }
     }
 }
