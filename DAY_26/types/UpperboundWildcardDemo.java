@@ -2,7 +2,7 @@ package DAY_26.types;
 import java.util.*;
 
 public class UpperboundWildcardDemo {
-    static double sumNumbers(List<? extends Number> nums){
+    static double sumNumbers(ListDemo<? extends Number> nums){
         double sum = 0.0;
         for(Number n : nums){
             sum += n.doubleValue();
@@ -11,8 +11,8 @@ public class UpperboundWildcardDemo {
     }
 
     public static void main(String[] args) {
-        List<Integer> ints = Arrays.asList(10,20,30);
-        List<Double> doubles = Arrays.asList(1.5,2.5,3.0);
+        ListDemo<Integer> ints = Arrays.asList(10,20,30);
+        ListDemo<Double> doubles = Arrays.asList(1.5,2.5,3.0);
 
         System.out.println("sum of ints: " + sumNumbers(ints));
         System.out.println("sum of doubles: " + sumNumbers(doubles));
