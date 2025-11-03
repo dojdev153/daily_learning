@@ -50,5 +50,13 @@ public class Program2 {
             prod = i * 5;
             System.out.println(i + " * 5 = " + prod);
         }
+        System.out.println();
+        System.out.println("factorial of a number: ");
+        int num = sc.nextInt();
+        int fact = 1;
+        for(int i =1;i <= num;i++){
+            fact *=i;
+        }
+        System.out.println("factorial of " + num + " is " + fact);
     }
 }
