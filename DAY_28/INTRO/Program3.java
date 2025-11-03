@@ -42,6 +42,34 @@ public class DayOfWeek {
         }
 
         System.out.println(dayName);
+
+        System.out.println();
+
+        System.out.println("Enter a vowel: ");
+
+        char ch = sc.next().charAt(0); // Read first character
+
+        // Convert to lowercase to handle both uppercase and lowercase letters
+        ch = Character.toLowerCase(ch);
+
+        switch (ch) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                System.out.println(ch + " is a vowel.");
+                break;
+            default:
+                // Check if the character is an alphabet letter
+                if (ch >= 'a' && ch <= 'z') {
+                    System.out.println(ch + " is a consonant.");
+                } else {
+                    System.out.println("Invalid input! Not an alphabet letter.");
+                }
+        }
+
+
         sc.close();
     }
 }
