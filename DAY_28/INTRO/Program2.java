@@ -58,5 +58,20 @@ public class Program2 {
             fact *=i;
         }
         System.out.println("factorial of " + num + " is " + fact);
+        System.out.println();
+        System.out.println("enter a number to check if its prime: ");
+        int num2 = sc.nextInt();
+        boolean isPrime = true;
+        for(int i = 2; i < num2; i++){
+            if(num2 % i == 0){
+                isPrime = false;
+                break;
+            }
+        }
+        if(isPrime){
+            System.out.println(num2 + " is a prime number");
+        }else{
+            System.out.println(num2 + " is not a prime number");
+        }
     }
 }
