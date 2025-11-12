@@ -68,8 +68,22 @@ public class DayOfWeek {
                     System.out.println("Invalid input! Not an alphabet letter.");
                 }
         }
+        
 
+        int n = 10; // Number of terms
+        int first = 0, second = 1; // First two terms of the series
 
+        System.out.println("Fibonacci series up to " + n + " terms:");
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(first + " ");
+
+            // Calculate the next term
+            int next = first + second;
+            first = second;
+            second = next;
+        }
+         
         sc.close();
     }
 }
