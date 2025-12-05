@@ -1,14 +1,26 @@
 class BankAccount {
     private double balance;
-    public BankAccount (double initialBalance) {
+    private final double maxBalance;
+
+    public BankAccount (double initialBalance, double maxBalance) {
         this.balance = initialBalance;
+        this.maxBalance = maxBalance;
     }
+
     public synchronized void deposit(double amount){
-        balance += amount;
-        System.out.println(Thread.currentThread().getName() +  " deposti" + amount + ", balance: " + balance);
+        while (maxBalance > 0 && balance + amount > maxBalance) {
+            try{ wait();}
+            catch(InterruptedException e){ 
+                Thread.currentThread().interrupt();
+                return;
+            }
+        }
+         balance += amount;
+        System.out.println(Thread.currentThread().getName() +  " deposit: " + amount + ", balance: " + balance);
 
         notifyAll();
     }
+
     public synchronized void withdraw(double amount){
         if(amount > balance){
             try{ wait(); } 
@@ -18,10 +30,11 @@ class BankAccount {
             }
         }
         balance -= amount;
-        System.out.println(Thread.currentThread().getName() + " withdraw" + amount + ", balance: " + balance);
+        System.out.println(Thread.currentThread().getName() + " withdraw: " + amount + ", balance: " + balance);
 
         notifyAll();
     }
+
     public synchronized double getBalance(){
         return balance;
     }
@@ -69,7 +82,7 @@ class Withdrawer implements Runnable {
 }
 public class Bank {
     public static void main(String []a){
-        BankAccount account = new BankAccount(100);
+        BankAccount account = new BankAccount(100, 500);
 
         Thread t1 = new Thread(new Depositor(account), "Depositor-1");
         Thread t2 = new Thread(new Withdrawer(account), "Withdrawer-1");
